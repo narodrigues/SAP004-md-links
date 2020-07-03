@@ -8,12 +8,12 @@ const mdLinks = (path) => {
       if(e){
         reject(e);
       } else {
-        const re = /\[([^\]]+)\]\((http.*)\)/gm
+        const re = /\[([^\]]+)\]\((http.*)\)/gmi;
         const findLink = data.match(re);
 
         findLink.forEach(links => {
           const text = links.match(/\[([^\]]+)/)[0].replace('[', '').replace('\n', ' ');
-          const href = links.match(/(http.*)/)[0];
+          const href = links.match(/(https?\:[^\)]*)/)[0];
           arr.push({text, href, file: path});
         });
         resolve(arr);

@@ -1,10 +1,10 @@
 
 const fs = require('fs');
 
-const mdLinks = (path) => {
+const mdLinks = (file) => {
   const myPromise = new Promise((resolve, reject) => {
     const arr = [];
-    fs.readFile(path, 'utf8', (e, data) => {
+    fs.readFile(file, 'utf8', (e, data) => {
       if(e){
         reject(e);
       } else {
@@ -12,9 +12,9 @@ const mdLinks = (path) => {
         const findLink = data.match(re);
 
         findLink.forEach(links => {
-          const text = links.match(/\[([^\]]+)/)[0].replace('[', '').replace('\n', ' ');
+          const text = links.match(/\[([^\]]+)/)[0].replace(/(\[|\n)/gm, '');
           const href = links.match(/(https?\:[^\)]*)/)[0];
-          arr.push({text, href, file: path});
+          arr.push({text, href, file});
         });
         resolve(arr);
       }

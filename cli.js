@@ -5,6 +5,6 @@ const mdLinks = require('./index.js');
 const [,, args] = process.argv;
 
 mdLinks(args)
-.then((links) => {
+.then( links => {
   console.log(links)
 })

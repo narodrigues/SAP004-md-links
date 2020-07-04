@@ -1,11 +1,17 @@
 
 const fs = require('fs');
+const path = require('path');
 
 const mdLinks = (file) => {
   const myPromise = new Promise((resolve, reject) => {
     const arr = [];
-    fs.readFile(file, 'utf8', (e, data) => {
-      if(e){
+
+    const arquivo = path.resolve(file)
+    console.log(arquivo)
+
+
+    fs.readFile(arquivo, 'utf8', (e, data) => {
+      if(e || path.extname(file) !== ".md"){
         reject(e);
       } else {
         const re = /\[([^\]]+)\]\((http.*)\)/gmi;

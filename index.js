@@ -7,7 +7,25 @@ const mdLinks = (file) => {
     const arr = [];
 
     const arquivo = path.resolve(file)
-    console.log(arquivo)
+
+    
+
+    fs.readdir(arquivo, 'utf8', (e, data) => {
+      console.log(arquivo)
+      console.log(data)
+      for(let x = 0; x < data.length; x++){
+        if(e || path.extname(data[x]) !== ".md"){
+          reject(e);
+        } else {
+          const fullPath = `${arquivo}/${data[x]}`;
+
+          fs.readFile(fullPath, 'utf8', (e, data) => {
+            console.log(data)
+          });
+        }
+      }   
+    });
+
 
 
     fs.readFile(arquivo, 'utf8', (e, data) => {

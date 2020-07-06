@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const mdLinks = require('./index.js');
-
 const [,, args] = process.argv;
 
 mdLinks(args)
@@ -9,5 +8,5 @@ mdLinks(args)
   console.log(links);
 })
 .catch(e => {
-  console.error(e);
+  console.log(e);
 });

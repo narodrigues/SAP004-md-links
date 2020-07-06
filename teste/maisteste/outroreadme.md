@@ -1,3 +1,4 @@
-* [ ] [Uso de callbacks](https://developer.mozilla.org/pt-BR/docs/Glossario/Callback_function)
-* [ ] [Consumo de Promises](https://scotch.io/tutorials/javascript-promises-for-dummies#toc-consuming-promises)
-* [ ] [Criação de uma Promise](https://www.freecodecamp.org/news/how-to-write-a-javascript-promise-4ed8d44292b8/)
+  [markdown-it](https://github.com/markdown-it/markdown-it), que nos devolve um
+  array de _tokes_ que utilizamos para identificar os links.
+* Seguindo outro caminho, poderíamos usar [expressões regulares
+  (`RegExp`)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions).

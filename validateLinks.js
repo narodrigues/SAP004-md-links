@@ -5,11 +5,11 @@ const validateLinks = (link) => {
     https(link)
       .then(response => {
         if(response.status >= 200 && response.status <= 599){
-          resolve(`${response.status}: ${response.statusText}`)
+          resolve(`${response.status}: ${response.statusText}`);
         }
       })
-      .catch(() => resolve('404: Not Found'))
+      .catch(() => resolve('404: Not Found'));
   });
 }
 
-module.exports = validateLinks
+module.exports = validateLinks;

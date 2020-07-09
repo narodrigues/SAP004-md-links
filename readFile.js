@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const readFile = file => {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     const arr = [];
     const fullPath = path.resolve(file);
 
@@ -21,9 +21,8 @@ const readFile = file => {
       return resolve(e)
       // else {
       //   reject('O arquivo não possui extensão ".md"');
-      //   // console.log('O arquivo não possui extensão ".md"')
       // }
-    })
+    });
   });
 }
 

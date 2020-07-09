@@ -10,9 +10,9 @@ const mdLinks = (file, validate) => {
         readPath(file)
           .then((data) => {
             callValidate(validate, data)
-            .then(links => {
-              return resolve(links)
-            })
+              .then(links => {
+                return resolve(links);
+              });
           })
           .catch(e => {
             reject(e);
@@ -21,9 +21,9 @@ const mdLinks = (file, validate) => {
         readFile(file)
           .then((data) => {
             callValidate(validate, data)
-            .then(links => {
-              return resolve(links)
-            })
+              .then(links => {
+                return resolve(links);
+              });
           })
           .catch(e => {
             reject(e);

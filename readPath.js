@@ -13,7 +13,7 @@ const readPath = paths => {
           return resolve(readFile(fullPath));
         }
       } 
-      return resolve(e)
+      return resolve(e);
     });
   })
 }

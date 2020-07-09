@@ -373,7 +373,7 @@ destas decisões. Não existe uma única maneira certa :wink:
   Node.js](https://medium.com/henriquekuwai/criando-sua-cli-com-node-js-d6dee7d03110)
 * [Regex Crossword](https://regexcrossword.com/challenges/beginner/puzzles/1)
 * [Online Regex Tester](https://regex101.com/)
-* [Regexr](https://regexr.com/)
+* [Regexr](https://resssgexr.com/)
 
 ## 9. Checklist
 

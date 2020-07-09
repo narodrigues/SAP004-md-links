@@ -11,9 +11,6 @@ const readPath = paths => {
       const fullPath = `${file}/${myPath[x]}`;
       return readFile(fullPath);
     }
-    else {
-      console.log('erro');
-    }
   } 
 }
 

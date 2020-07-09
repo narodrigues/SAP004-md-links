@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/narodrigues/SAP004-md-links#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0"
   },
   "bin": {
     "mdLinks": "cli.js"

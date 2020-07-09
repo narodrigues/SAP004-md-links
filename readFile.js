@@ -17,9 +17,12 @@ const readFile = file => {
           arr.push({text, href, file});
         });
         resolve(arr);
-      } else {
-        console.log('O arquivo não possui extensão ".md"')
-      }
+      } 
+      return resolve(e)
+      // else {
+      //   reject('O arquivo não possui extensão ".md"');
+      //   // console.log('O arquivo não possui extensão ".md"')
+      // }
     })
   });
 }

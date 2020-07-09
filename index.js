@@ -1,34 +1,33 @@
 const fs = require('fs');
 const readFile = require('./readFile');
 const readPath = require('./readPath')
-const validateLinks = require('./validateLinks');
+const callValidate = require('./callValidate');
 
 const mdLinks = (file, validate) => {
   return new Promise((resolve, reject) => {
     fs.stat(file, (e, stats) => {
       if(stats.isDirectory()){
-        resolve(readPath(file))
+        readPath(file)
+          .then((data) => {
+            callValidate(validate, data)
+            .then(links => {
+              return resolve(links)
+            })
+          })
+          .catch(e => {
+            reject(e);
+          });
       } else if(stats.isFile()){
         readFile(file)
-        .then((data) => {
-          if (validate === '--validate') {
-            const status = [];
-
-            data.forEach(links => {
-              status.push(validateLinks(links.href));
+          .then((data) => {
+            callValidate(validate, data)
+            .then(links => {
+              return resolve(links)
             })
-            return Promise.all(status).then(httpStatus => {
-              for(let x = 0; x < httpStatus.length; x++){
-                data[x].stats = httpStatus[x];
-              } 
-              return resolve(data);
-            })
-          }
-          return resolve(data);
-        })
-        .catch(e => {
-          reject(e);
-        });
+          })
+          .catch(e => {
+            reject(e);
+          });
       } else {
         reject(e);
       }

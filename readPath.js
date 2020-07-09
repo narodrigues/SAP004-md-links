@@ -3,15 +3,19 @@ const path = require('path');
 const readFile = require('./readFile');
 
 const readPath = paths => {
-  const file = path.resolve(paths);
-  const myPath = fs.readdirSync(file, 'utf8');
+  return new Promise(resolve => { 
+    const file = path.resolve(paths);
 
-  for(let x = 0; x < myPath.length; x++){
-    if(path.extname(myPath[x]) === ".md"){
-      const fullPath = `${file}/${myPath[x]}`;
-      return readFile(fullPath);
-    }
-  } 
+    fs.readdir(file, 'utf8', (e, data) => {
+      for(let x = 0; x < data.length; x++){
+        if(path.extname(data[x]) === ".md"){
+          const fullPath = `${file}/${data[x]}`;
+          return resolve(readFile(fullPath));
+        }
+      } 
+      return resolve(e)
+    });
+  })
 }
 
 module.exports = readPath;

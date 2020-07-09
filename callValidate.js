@@ -8,7 +8,7 @@ const callValidate = (validate, data) => {
       data.forEach(links => {
         status.push(validateLinks(links.href));
       });
-      
+
       return Promise.all(status)
         .then(httpStatus => {
           for(let x = 0; x < httpStatus.length; x++){
@@ -18,7 +18,7 @@ const callValidate = (validate, data) => {
         });
     }
     return resolve(data);
-  })
+  });
 }
 
 module.exports = callValidate;

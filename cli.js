@@ -7,7 +7,7 @@ const validate = process.argv[3]
 mdLinks(path, validate)
   .then(links => {
     links.forEach(infos => {
-      const eachLink = `${infos.file}  ->    ${infos.stats ?  infos.stats : ''}   ->     ${infos.text}     ->       ${infos.href}`;
+      const eachLink = `${infos.file}  ->     ${infos.text} ->       ${infos.href}  ${infos.stats ?  "->       " + infos.stats : ''}`;
       console.log(eachLink);
     });
   })

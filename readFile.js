@@ -12,9 +12,9 @@ const readFile = file => {
         const findLink = data.match(re);
     
         findLink.forEach(links => {
-          const text = links.match(/\[([^\]]+)/)[0].replace(/(\[|\n)/gm, '');
+          const text = links.match(/\[([^\]]+)/)[1].replace(/(\n)/gm, '');
           const href = links.match(/(https?\:[^\)]*)/)[0];
-          arr.push({text, href, file});
+          arr.push({text, href, file: fullPath});
         });
         resolve(arr);
       } 

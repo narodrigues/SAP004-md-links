@@ -36,3 +36,5 @@ const resultsWithStatus = [
     stats: '200: OK'
   }
 ]
+
+module.exports = {resultsWithoutStatus, resultsWithStatus}

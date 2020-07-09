@@ -14,7 +14,6 @@ const readFile = file => {
         findLink.forEach(links => {
           const text = links.match(/\[([^\]]+)/)[1].replace(/(\n)/gm, '');
           const href = links.match(/(http.*?)\)/)[0];
-          console.log(href)
           // const href = links.match(/(https?\:[^\)]*)/)[0];
           arr.push({text, href, file: fullPath});
         });

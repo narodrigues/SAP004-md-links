@@ -6,7 +6,7 @@ describe('mdLinks', () => {
     expect(typeof mdLinks).toBe('function');
   });
   
-  test('when it is file, should return an array with file, text and href', (done) => {
+  test('when it is a file, should return an array with file, text and href', (done) => {
     mdLinks('./test/mock.md')
       .then(links => {
         expect(links).toEqual(mock.resultsWithoutStatus);
@@ -14,7 +14,7 @@ describe('mdLinks', () => {
       })
   })
 
-  test('when it is file, should return an array with file, text, href and http/s stats', (done) => {
+  test('when it is a file, should return an array with file, text, href and http/s stats', (done) => {
     mdLinks('./test/mock.md', '--validate')
       .then(links => {
         expect(links).toEqual(mock.resultsWithStatus);
@@ -22,7 +22,7 @@ describe('mdLinks', () => {
       })
   })
 
-  test('when it is folder, should return an array with file, text and href', (done) => {
+  test('when it is a folder, should return an array with file, text and href', (done) => {
     mdLinks('./test/')
       .then(links => {
         expect(links).toEqual(mock.resultsWithoutStatus);
@@ -30,7 +30,7 @@ describe('mdLinks', () => {
       })
   })
 
-  test('when it is folder, should return an array with file, text, href and http/s stats', (done) => {
+  test('when it is a folder, should return an array with file, text, href and http/s stats', (done) => {
     mdLinks('./test/', '--validate')
       .then(links => {
         expect(links).toEqual(mock.resultsWithStatus);
@@ -38,11 +38,30 @@ describe('mdLinks', () => {
       })
   })
 
-  // test('should return a string when the folder does not contain a .md file', (done) => {
-  //   mdLinks('./test/folderTest/')
-  //     .catch(e => {
-  //       expect(e).toEqual('Não existe um arquivo com extensão .md');
-  //       done();
-  //     })
-  // })
+  test('should return a string when the folder does not contain a .md file', (done) => {
+    mdLinks('./test/folderTest/')
+      .catch(e => {
+        expect(e).toEqual('Não existe um arquivo com extensão ".md" nesse diretório');
+        done();
+      })
+  })
+
+  test('should return a string when the file is not a .md', (done) => {
+    mdLinks('./test/mockLogo.jpg')
+      .catch(e => {
+        expect(e).toEqual('O arquivo não possui extensão ".md"');
+        done();
+      })
+  })
 });
+
+
+// describe('validateLinks', () => {
+//   test('should return 404 error with a broken link', () => {
+//     mdLinks('./test/mock.md', '--validate')
+//       .then(links => {
+//         expect(links).toEqual(mock.resultsWithStatus);
+//         done();
+//       })
+//   });
+// });

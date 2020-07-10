@@ -3,7 +3,7 @@ const path = require('path');
 const readFile = require('./readFile');
 
 const readPath = paths => {
-  return new Promise(resolve => { 
+  return new Promise((resolve, reject) => { 
     const file = path.resolve(paths);
 
     fs.readdir(file, 'utf8', (e, data) => {
@@ -13,7 +13,7 @@ const readPath = paths => {
           return resolve(readFile(fullPath));
         }
       } 
-      return console.log('Não existe um arquivo com extensão .md');
+      return reject(e);
     });
   })
 }

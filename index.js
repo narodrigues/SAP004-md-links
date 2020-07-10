@@ -14,8 +14,8 @@ const mdLinks = (file, validate) => {
                 return resolve(links);
               });
           })
-          .catch(e => {
-            reject(e);
+          .catch(() => {
+            reject('Não existe um arquivo com extensão ".md" nesse diretório');
           });
       } else if(stats.isFile()){
         readFile(file)
@@ -25,11 +25,11 @@ const mdLinks = (file, validate) => {
                 return resolve(links);
               });
           })
-          .catch(e => {
-            reject(e);
+          .catch(() => {
+            reject('O arquivo não possui extensão ".md"');
           });
       } else {
-        reject(e);
+        reject('Erro');
       }
     });
   })

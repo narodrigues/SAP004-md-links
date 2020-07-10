@@ -27,7 +27,7 @@
     "node-fetch": "^2.6.0"
   },
   "bin": {
-    "mdLinks": "cli.js"
+    "md-links": "cli.js"
   },
   "devDependencies": {
     "eslint": "^7.3.1",

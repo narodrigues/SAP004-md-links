@@ -9,15 +9,23 @@ describe('mdLinks', () => {
   test('when it is a file, should return an array with file, text and href', (done) => {
     mdLinks('./test/mock.md')
       .then(links => {
-        expect(links).toEqual(mock.resultsWithoutStatus);
+        expect(links).toEqual(mock.resultsWithoutValidate);
         done();
       })
   })
 
-  test('when it is a file, should return an array with file, text, href and http/s stats', (done) => {
+  test('when it is a file and pass the "--validate" option, should return an array with file, text, href and http/s stats', (done) => {
     mdLinks('./test/mock.md', '--validate')
       .then(links => {
-        expect(links).toEqual(mock.resultsWithStatus);
+        expect(links).toEqual(mock.resultsWithValidate);
+        done();
+      })
+  })
+
+  test('when it is a file and pass the "--status" option, should return stats', (done) => {
+    mdLinks('./test/mock.md', '--stats')
+      .then(links => {
+        expect(links).toEqual(mock.statsReturn);
         done();
       })
   })
@@ -25,15 +33,23 @@ describe('mdLinks', () => {
   test('when it is a folder, should return an array with file, text and href', (done) => {
     mdLinks('./test/')
       .then(links => {
-        expect(links).toEqual(mock.resultsWithoutStatus);
+        expect(links).toEqual(mock.resultsWithoutValidate);
         done();
       })
   })
 
-  test('when it is a folder, should return an array with file, text, href and http/s stats', (done) => {
+  test('when it is a folder and pass the "--validate" option, should return an array with file, text, href and http/s stats', (done) => {
     mdLinks('./test/', '--validate')
       .then(links => {
-        expect(links).toEqual(mock.resultsWithStatus);
+        expect(links).toEqual(mock.resultsWithValidate);
+        done();
+      })
+  })
+
+  test('when it is a folder and pass the "--stats" option, should return an array with file, text, href and http/s stats', (done) => {
+    mdLinks('./test/', '--stats')
+      .then(links => {
+        expect(links).toEqual(mock.statsReturn);
         done();
       })
   })

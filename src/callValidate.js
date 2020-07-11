@@ -1,24 +1,28 @@
 const validateLinks = require('./validateLinks');
+// const callStats = require('./callStats');
 
 const callValidate = (validate, data) => {
   return new Promise(resolve => { 
-    if(validate === '--validate'){
-      const status = [];
+    // if(validate === '--validate'){
+      const arrayWithStatus = [];
 
       data.forEach(links => {
-        status.push(validateLinks(links.href));
+        arrayWithStatus.push(validateLinks(links.href));
       });
 
-      return Promise.all(status)
+      return Promise.all(arrayWithStatus)
         .then(httpStatus => {
           for(let x = 0; x < httpStatus.length; x++){
-            data[x].stats = httpStatus[x];
+            data[x].status = httpStatus[x];
           } 
           return resolve(data);
         });
-    }
-    return resolve(data);
-  });
+    })
+    // else if(validate === '--stats'){
+    //   callStats(data);
+    // }
+  //   return resolve(data);
+  // });
 }
 
 module.exports = callValidate;

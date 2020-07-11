@@ -2,6 +2,7 @@ const fs = require('fs');
 const readFile = require('./src/readFile');
 const readPath = require('./src/readPath')
 const callValidate = require('./src/callValidate');
+const callStats = require('./src/callStats')
 
 const mdLinks = (file, validate) => {
   return new Promise((resolve, reject) => {
@@ -9,10 +10,20 @@ const mdLinks = (file, validate) => {
       if(stats.isDirectory()){
         readPath(file)
           .then((data) => {
-            callValidate(validate, data)
-              .then(links => {
-                return resolve(links);
-              });
+            if(validate === '--validate'){
+              callValidate(validate, data)
+                .then(links => {
+                  return resolve(links);
+                });
+            } 
+            else if (validate === '--stats'){
+              callValidate(validate, data)
+                .then(links => {
+                  return resolve(callStats(links));
+                })
+            } else {
+              return resolve(data);
+            }
           })
           .catch(() => {
             reject('Não existe um arquivo com extensão ".md" nesse diretório');
@@ -20,10 +31,20 @@ const mdLinks = (file, validate) => {
       } else if(stats.isFile()){
         readFile(file)
           .then((data) => {
-            callValidate(validate, data)
-              .then(links => {
-                return resolve(links);
-              });
+            if(validate === '--validate'){
+              callValidate(validate, data)
+                .then(links => {
+                  return resolve(links);
+                });
+            } 
+            else if (validate === '--stats'){
+              callValidate(validate, data)
+                .then(links => {
+                  return resolve(callStats(links));
+                })
+            } else {
+              return resolve(data);
+            }
           })
           .catch(() => {
             reject('O arquivo não possui extensão ".md"');

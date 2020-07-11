@@ -4,7 +4,7 @@ const validateLinks = (link) => {
   return new Promise(resolve => {
     https(link)
       .then(response => {
-        if(response.status >= 200 && response.status <= 399){
+        if(response.status >= 200 && response.status <= 599){
           resolve(`${response.status}: ${response.statusText}`);
         }
       })

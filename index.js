@@ -2,7 +2,7 @@ const fs = require('fs');
 const readFile = require('./src/readFile');
 const readPath = require('./src/readPath')
 const callValidate = require('./src/callValidate');
-const callStats = require('./src/callStats')
+const callStats = require('./src/callStats');
 
 const mdLinks = (file, option) => {
   return new Promise((resolve, reject) => {
@@ -51,7 +51,7 @@ const mdLinks = (file, option) => {
         reject(e);
       }
     });
-  })
+  });
 }
 
 module.exports = mdLinks;

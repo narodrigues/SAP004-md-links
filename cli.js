@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
 const mdLinks = require('./index.js');
-const path = process.argv[2]
-const option = process.argv[3]
+const path = process.argv[2];
+const option = process.argv[3];
 
 mdLinks(path, option)
   .then(links => {
     if(option === '--stats'){
       const returnStats = `Total: ${links.links} \nUnique: ${links.uniqueLinks}`;
-      console.log(returnStats)
+      console.log(returnStats);
     }
     else if(option === '--validate'){
       links.forEach(infos => {

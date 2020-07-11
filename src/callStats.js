@@ -1,6 +1,6 @@
 const callStats = (data) => {
-  const links = data.map(x => x.href)
-  const uniqueLinks = new Set(links)
+  const links = data.map(x => x.href);
+  const uniqueLinks = new Set(links);
 
   return {
     links: links.length,

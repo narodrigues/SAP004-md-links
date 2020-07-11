@@ -12,7 +12,7 @@ mdLinks(path, option)
     }
     else if(option === '--validate'){
       links.forEach(infos => {
-        const eachLink = `${infos.file}  ->     ${infos.text} ->       ${infos.href}  ${infos.status ?  "->       " + infos.status : ''}`;
+        const eachLink = `${infos.file}  ->     ${infos.text} ->       ${infos.href} ->       ${infos.status}`;
         console.log(eachLink);
       });
     } else {

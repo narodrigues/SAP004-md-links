@@ -5,7 +5,7 @@ describe('mdLinks', () => {
   test('should be a function', () => {
     expect(typeof mdLinks).toBe('function');
   });
-  
+
   test('when it is a file, should return an array with file, text and href', (done) => {
     mdLinks('./test/mock.md')
       .then(links => {
@@ -70,10 +70,10 @@ describe('mdLinks', () => {
       })
   })
 
-  test('should return 404 error with a broken link', (done) => {
-    mdLinks('./test/mockWithErrors.md', '--validate')
+  test('when the file name is longer than 50 characters, should return the formatted name', (done) => {
+    mdLinks('./test/secondMock.md', '--validate')
       .then(links => {
-        expect(links).toEqual(mock.brokenLinks);
+        expect(links).toEqual(mock.fullName);
         done();
       })
   });

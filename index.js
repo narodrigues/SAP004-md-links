@@ -4,20 +4,19 @@ const readPath = require('./src/readPath')
 const callValidate = require('./src/callValidate');
 const callStats = require('./src/callStats')
 
-const mdLinks = (file, validate) => {
+const mdLinks = (file, option) => {
   return new Promise((resolve, reject) => {
     fs.stat(file, (e, stats) => {
       if(stats.isDirectory()){
         readPath(file)
           .then((data) => {
-            if(validate === '--validate'){
-              callValidate(validate, data)
+            if(option === '--validate'){
+              callValidate(data, option)
                 .then(links => {
                   return resolve(links);
                 });
-            } 
-            else if (validate === '--stats'){
-              callValidate(validate, data)
+            } else if(option === '--stats'){
+              callValidate(data, option)
                 .then(links => {
                   return resolve(callStats(links));
                 })
@@ -31,14 +30,13 @@ const mdLinks = (file, validate) => {
       } else if(stats.isFile()){
         readFile(file)
           .then((data) => {
-            if(validate === '--validate'){
-              callValidate(validate, data)
+            if(option === '--validate'){
+              callValidate(data, option)
                 .then(links => {
                   return resolve(links);
                 });
-            } 
-            else if (validate === '--stats'){
-              callValidate(validate, data)
+            } else if(option === '--stats'){
+              callValidate(data, option)
                 .then(links => {
                   return resolve(callStats(links));
                 })

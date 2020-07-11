@@ -14,8 +14,13 @@ const readFile = file => {
         findLink.forEach(links => {
           const text = links.match(/\[([^\]]+)/)[1].replace(/(\n)/gm, '');
           const href = links.match(/(https?:.*?)\)[^)]/)[1];
-          arr.push({text, href, file: fullPath});
-
+          if(text.length > 50){
+            const formattedName = `${text.substring(0, 51)}...`;
+            arr.push({text: formattedName, href, file: fullPath});
+          } 
+          else {
+            arr.push({text, href, file: fullPath});
+          }
         });
         return resolve(arr);
       } 

@@ -1,7 +1,7 @@
 const fs = require('fs');
-const readFile = require('./readFile');
-const readPath = require('./readPath')
-const callValidate = require('./callValidate');
+const readFile = require('./src/readFile');
+const readPath = require('./src/readPath')
+const callValidate = require('./src/callValidate');
 
 const mdLinks = (file, validate) => {
   return new Promise((resolve, reject) => {

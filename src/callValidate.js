@@ -11,7 +11,8 @@ const callValidate = data => {
     return Promise.all(arrayWithStatus)
       .then(httpStatus => {
         for(let x = 0; x < httpStatus.length; x++){
-          data[x].status = httpStatus[x];
+          data[x].status = httpStatus[x].status;
+          data[x].message = httpStatus[x].message;
         } 
         return resolve(data);
       });

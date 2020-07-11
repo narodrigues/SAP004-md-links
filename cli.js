@@ -2,17 +2,19 @@
 
 const mdLinks = require('./index.js');
 const path = process.argv[2];
-const option = process.argv[3];
+const options = process.argv;
 
-mdLinks(path, option)
+mdLinks(path, options)
   .then(links => {
-    if(option === '--stats'){
+    if(options.includes('--stats') && options.includes('--validate')){
+      const returnStats = `Total: ${links.links} \nUnique: ${links.uniqueLinks} \nBroken: ${links.broken}`;
+      console.log(returnStats);
+    } else if(options.includes('--stats') && !options.includes('--validate')){
       const returnStats = `Total: ${links.links} \nUnique: ${links.uniqueLinks}`;
       console.log(returnStats);
-    }
-    else if(option === '--validate'){
+    } else if(options.includes('--validate')){
       links.forEach(infos => {
-        const eachLink = `${infos.file}  ->     ${infos.text} ->       ${infos.href} ->       ${infos.status}`;
+        const eachLink = `${infos.file}  ->     ${infos.text} ->       ${infos.href} ->       ${infos.status}: ${infos.message}`;
         console.log(eachLink);
       });
     } else {

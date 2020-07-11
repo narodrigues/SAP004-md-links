@@ -29,7 +29,7 @@ const mdLinks = (file, validate) => {
             reject('O arquivo não possui extensão ".md"');
           });
       } else {
-        reject('Erro');
+        reject(e);
       }
     });
   })

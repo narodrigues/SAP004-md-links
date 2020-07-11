@@ -38,7 +38,7 @@ describe('mdLinks', () => {
       })
   })
 
-  test('should return a string when the folder does not contain a .md file', (done) => {
+  test('should return an error when the folder does not contain a .md file', (done) => {
     mdLinks('./test/folderTest/')
       .catch(e => {
         expect(e).toEqual('Não existe um arquivo com extensão ".md" nesse diretório');
@@ -46,22 +46,19 @@ describe('mdLinks', () => {
       })
   })
 
-  test('should return a string when the file is not a .md', (done) => {
-    mdLinks('./test/mockLogo.jpg')
+  test('should return an error when the file is not a .md', (done) => {
+    mdLinks('./test/returnMock.js')
       .catch(e => {
         expect(e).toEqual('O arquivo não possui extensão ".md"');
         done();
       })
   })
+
+  test('should return 404 error with a broken link', (done) => {
+    mdLinks('./test/mockWithErrors.md', '--validate')
+      .then(links => {
+        expect(links).toEqual(mock.brokenLinks);
+        done();
+      })
+  });
 });
-
-
-// describe('validateLinks', () => {
-//   test('should return 404 error with a broken link', () => {
-//     mdLinks('./test/mock.md', '--validate')
-//       .then(links => {
-//         expect(links).toEqual(mock.resultsWithStatus);
-//         done();
-//       })
-//   });
-// });

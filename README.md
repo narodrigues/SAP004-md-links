@@ -74,6 +74,6 @@ Para o desenvolvimento desse projeto foram utilizados:
 * [Chalk](https://www.npmjs.com/package/chalk) - v.4.1.0
 
 
-## 6. Autora
+## 5. Autora
 
 **Natasha Costa** - natasha.gr.costa@gmail.com

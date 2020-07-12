@@ -6,7 +6,7 @@ describe('mdLinks', () => {
     expect(typeof mdLinks).toBe('function');
   });
 
-  test('when it is not a file neither a directory', (done) => {
+  test('when it is not a file neither a directory', done => {
     mdLinks('doesNotExist')
       .catch(e => {
         expect(e).toBe('Erro: O item passado não é válido');
@@ -14,7 +14,7 @@ describe('mdLinks', () => {
       });
   });
   
-  test('when it is a file, should return an array with file, text and href', (done) => {
+  test('when it is a file, should return an array with file, text and href', done => {
     mdLinks('./test/mock.md')
       .then(links => {
         expect(links).toEqual(mock.resultsWithoutValidate);
@@ -22,7 +22,7 @@ describe('mdLinks', () => {
       });
   });
 
-  test('when it is a file and pass the "--validate" option, should return an array with file, text, href and http/s stats', (done) => {
+  test('when it is a file and pass the "--validate" option, should return an array with file, text, href and http/s stats', done => {
     mdLinks('./test/mock.md', '--validate')
       .then(links => {
         expect(links).toEqual(mock.resultsWithValidate);
@@ -30,7 +30,7 @@ describe('mdLinks', () => {
       });
   });
 
-  test('when it is a file and pass the "--status" option, should return stats', (done) => {
+  test('when it is a file and pass the "--status" option, should return stats', done => {
     mdLinks('./test/mock.md', '--stats')
       .then(links => {
         expect(links).toEqual(mock.statsReturn);
@@ -38,7 +38,7 @@ describe('mdLinks', () => {
       });
   });
 
-  test('when it is a folder, should return an array with file, text and href', (done) => {
+  test('when it is a folder, should return an array with file, text and href', done => {
     mdLinks('./test/')
       .then(links => {
         expect(links).toEqual(mock.resultsWithoutValidate);
@@ -46,7 +46,7 @@ describe('mdLinks', () => {
       });
   });
 
-  test('when it is a folder and pass the "--validate" option, should return an array with file, text, href and http/s stats', (done) => {
+  test('when it is a folder and pass the "--validate" option, should return an array with file, text, href and http/s stats', done => {
     mdLinks('./test/', '--validate')
       .then(links => {
         expect(links).toEqual(mock.resultsWithValidate);
@@ -54,7 +54,7 @@ describe('mdLinks', () => {
       });
   });
 
-  test('when it is a folder and pass the "--stats" option, should return an array with file, text, href and http/s stats', (done) => {
+  test('when it is a folder and pass the "--stats" option, should return an array with file, text, href and http/s stats', done => {
     mdLinks('./test/', '--stats')
       .then(links => {
         expect(links).toEqual(mock.statsReturn);
@@ -62,7 +62,7 @@ describe('mdLinks', () => {
       });
   });
 
-  test('should return an error when the folder does not contain a .md file', (done) => {
+  test('should return an error when the folder does not contain a .md file', done => {
     mdLinks('./src')
       .catch(e => {
         expect(e).toEqual('Não existe um arquivo com extensão ".md" nesse diretório');
@@ -70,7 +70,7 @@ describe('mdLinks', () => {
       });
   });
 
-  test('should return an error when the file is not a .md', (done) => {
+  test('should return an error when the file is not a .md', done => {
     mdLinks('./test/returnMock.js')
       .catch(e => {
         expect(e).toEqual('O arquivo não possui extensão ".md"');
@@ -78,7 +78,7 @@ describe('mdLinks', () => {
       });
   });
 
-  test('when the file name is longer than 50 characters, should return the formatted name', (done) => {
+  test('when the file name is longer than 50 characters, should return the formatted name', done => {
     mdLinks('./test/secondMock.md', '--validate')
       .then(links => {
         expect(links).toEqual(mock.fullName);

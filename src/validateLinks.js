@@ -1,6 +1,6 @@
 const https = require('node-fetch');
 
-const validateLinks = (link) => {
+const validateLinks = link => {
   return new Promise(resolve => {
     const linksStatus = [];
     const error = {

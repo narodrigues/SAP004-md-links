@@ -11,7 +11,7 @@ const mdLinks = (file, option = []) => {
         return reject('Erro: O item passado não é válido');
       } else if(stats.isDirectory()){
           readPath(file)
-            .then((data) => {
+            .then(data => {
               if(option.includes('--validate') && !option.includes('--stats')){
                 callValidate(data)
                   .then(links => {
@@ -31,7 +31,7 @@ const mdLinks = (file, option = []) => {
             });
       } else if(stats.isFile()){
         readFile(file)
-          .then((data) => {
+          .then(data => {
             if(option.includes('--validate') && !option.includes('--stats')){
               callValidate(data)
                 .then(links => {

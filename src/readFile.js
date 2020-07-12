@@ -17,14 +17,12 @@ const readFile = file => {
           if(text.length > 50){
             const formattedName = `${text.substring(0, 51)}...`;
             arr.push({text: formattedName, href, file: fullPath});
-          } 
-          else {
+          } else {
             arr.push({text, href, file: fullPath});
           }
         });
         return resolve(arr);
-      } 
-      else {
+      } else {
         return reject(e);
       }
     });

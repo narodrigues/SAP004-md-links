@@ -63,7 +63,7 @@ describe('mdLinks', () => {
   });
 
   test('should return an error when the folder does not contain a .md file', (done) => {
-    mdLinks('./test/folderTest/')
+    mdLinks('./src')
       .catch(e => {
         expect(e).toEqual('Não existe um arquivo com extensão ".md" nesse diretório');
         done();

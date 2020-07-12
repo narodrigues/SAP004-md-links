@@ -6,6 +6,14 @@ describe('mdLinks', () => {
     expect(typeof mdLinks).toBe('function');
   });
 
+  test('when it is not a file neither a directory', (done) => {
+    mdLinks('doesNotExist')
+      .catch(e => {
+        expect(e).toBe('Erro: O item passado não é válido');
+        done();
+      });
+  });
+  
   test('when it is a file, should return an array with file, text and href', (done) => {
     mdLinks('./test/mock.md')
       .then(links => {
